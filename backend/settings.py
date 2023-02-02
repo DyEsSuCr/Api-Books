@@ -46,6 +46,8 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.books',
+    'apps.authors',
 ]
 
 THIRDS_APPS = [

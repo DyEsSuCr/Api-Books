@@ -14,6 +14,6 @@ class User(AbstractUser):
     verbose_name_plural = 'Usuarios'
 
   @property
-  def get_photo(self):
+  def get_avatar(self):
     if self.avatar:
       return self.avatar.url
