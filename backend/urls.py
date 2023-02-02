@@ -9,6 +9,7 @@ urlpatterns = [
 
     # Users
     path('users/', include('apps.users.api.routers')),
+    path('authors/', include('apps.authors.api.routers')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
