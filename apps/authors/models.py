@@ -1,10 +1,10 @@
 from django.db import models
+from apps.base.models import BaseModel
 
 # Create your models here.
 
-class Countries(models.Model):
+class Countries(BaseModel):
   name = models.CharField('Nacionalidad', max_length=120, unique=True)
-  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['name']
@@ -16,14 +16,12 @@ class Countries(models.Model):
     return f'{self.name}'
 
 
-class Author(models.Model):
+class Author(BaseModel):
   first_name = models.CharField('Nombres', max_length=120)
   last_name = models.CharField('Apellidos', max_length=120)
   photo = models.ImageField('Foto', upload_to='authors', blank=True, null=True)
   birth = models.DateField('Fecha de nacimiento', auto_now=False, auto_now_add=False)
   nacionality = models.OneToOneField("Countries", verbose_name="nacionalidad", on_delete=models.CASCADE)
-  state = models.BooleanField(default=True)
-
 
   class Meta:
     ordering = ['first_name']

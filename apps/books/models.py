@@ -1,10 +1,10 @@
 from django.db import models
+from apps.base.models import BaseModel
 
 # Create your models here.
 
-class Gender(models.Model):
+class Gender(BaseModel):
   name = models.CharField('Genero', max_length=120, unique=True)
-  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['name']
@@ -16,10 +16,9 @@ class Gender(models.Model):
     return f'{self.name}'
 
 
-class Lenguaje(models.Model):
+class Lenguaje(BaseModel):
 
   initial = models.CharField('Lenjuage', max_length=6, unique=True)
-  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['initial']
@@ -31,8 +30,7 @@ class Lenguaje(models.Model):
     return f'{self.initial}'
 
 
-
-class Book(models.Model):
+class Book(BaseModel):
   title = models.CharField('Titulo', max_length=120, unique=True)
   subtitle = models.CharField('Subtitulo', max_length=120, unique=True, null=True, blank=True)
   front_page = models.ImageField('Portada', upload_to='frontpage', null=True, blank=True)
@@ -41,7 +39,6 @@ class Book(models.Model):
   author = models.ManyToManyField("authors.Author", verbose_name="Author")
   lenguaje = models.ManyToManyField('Lenguaje', verbose_name='Lenguaje')
   gender = models.ManyToManyField("Gender", verbose_name="Genero")
-  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['title']
