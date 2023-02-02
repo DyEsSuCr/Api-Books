@@ -1,11 +1,18 @@
 from rest_framework.serializers import ModelSerializer
 from apps.authors.api.serealizers import AuthorSerealizer
-from apps.books.models import Book, Gender
+from apps.books.models import Book, Gender, Lenguaje
 class GenderSerealizer(ModelSerializer):
 
   class Meta:
     model = Gender
-    fields = ('id', 'name')
+    fields = '__all__'
+
+
+class LenguajeSerealizer(ModelSerializer):
+  
+  class Meta:
+    model = Lenguaje
+    fields = '__all__'
 
 
 class BookSerealizer(ModelSerializer):

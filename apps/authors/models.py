@@ -4,6 +4,7 @@ from django.db import models
 
 class Countries(models.Model):
   name = models.CharField('Nacionalidad', max_length=120, unique=True)
+  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['name']
@@ -21,6 +22,7 @@ class Author(models.Model):
   photo = models.ImageField('Foto', upload_to='authors', blank=True, null=True)
   birth = models.DateField('Fecha de nacimiento', auto_now=False, auto_now_add=False)
   nacionality = models.OneToOneField("Countries", verbose_name="nacionalidad", on_delete=models.CASCADE)
+  state = models.BooleanField(default=True)
 
 
   class Meta:

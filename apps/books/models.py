@@ -4,6 +4,7 @@ from django.db import models
 
 class Gender(models.Model):
   name = models.CharField('Genero', max_length=120, unique=True)
+  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['name']
@@ -15,10 +16,32 @@ class Gender(models.Model):
     return f'{self.name}'
 
 
+class Lenguaje(models.Model):
+
+  initial = models.CharField('Lenjuage', max_length=6, unique=True)
+  state = models.BooleanField(default=True)
+
+  class Meta:
+    ordering = ['initial']
+    db_table = 'lenguaje'
+    verbose_name = 'Lenguaje'
+    verbose_name_plural = 'Lenguajes'
+
+  def __str__(self):
+    return f'{self.initial}'
+
+
+
 class Book(models.Model):
   title = models.CharField('Titulo', max_length=120, unique=True)
+  subtitle = models.CharField('Subtitulo', max_length=120, unique=True, null=True, blank=True)
+  front_page = models.ImageField('Portada', upload_to='frontpage', null=True, blank=True)
+  pages = models.IntegerField(null=True, blank=True)
+  publicher_date = models.DateField('Fecha de publicacion', auto_now=False, auto_now_add=False)
   author = models.ManyToManyField("authors.Author", verbose_name="Author")
+  lenguaje = models.ManyToManyField('Lenguaje', verbose_name='Lenguaje')
   gender = models.ManyToManyField("Gender", verbose_name="Genero")
+  state = models.BooleanField(default=True)
 
   class Meta:
     ordering = ['title']
@@ -28,4 +51,9 @@ class Book(models.Model):
 
   def __str__(self):
     return f'{self.title}'
+
+  @property
+  def get_front_page(self):
+    if self.front_page:
+      return self.front_page.url
   

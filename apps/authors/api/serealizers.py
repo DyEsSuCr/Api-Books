@@ -4,7 +4,7 @@ class CountriesSerealizer(ModelSerializer):
 
   class Meta:
     model = Countries
-    fields = ('id', 'name')
+    fields = '__all__'
 
 
 class AuthorSerealizer(ModelSerializer):
