@@ -10,6 +10,8 @@ urlpatterns = [
     # Users
     path('users/', include('apps.users.api.routers')),
     path('authors/', include('apps.authors.api.routers')),
+    path('books/', include('apps.books.api.routers')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
